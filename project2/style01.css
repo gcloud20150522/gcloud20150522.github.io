@@ -1,0 +1,175 @@
+body{
+    margin: 0;
+    min-width: 960px;
+}
+/* *{
+    box-sizing: border-box
+} */
+header{
+    background: #333;
+}
+header div{
+    width: 960px;
+    position: relative;
+    margin: 0 auto
+
+}
+header div h1{
+    line-height: 3;
+    margin: 0;
+    color: #fff;
+    font-size:1.2em
+}
+header div ul{
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top:0;
+    overflow: auto
+}
+header div ul li{
+    float: left;
+    list-style-type: none;
+    margin-right: 10px;
+    
+}
+header div ul li a{
+    color: white;
+    font-size: 0.8em
+}
+header div ul li a:hover{
+    color: #000;
+}
+#banner img{
+    max-width: 100%;
+}
+#banner .ban{
+    width: 960px;
+    margin: 0 auto;
+    border-bottom: solid 1px green;
+}
+
+#banner{
+    position: relative;
+}
+#banner ul{
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    right: 150px;
+    /* overflow: hidden; */
+}
+#banner ul li{
+    float: left;
+    list-style-type: none;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    
+    height: 25px;
+   
+}
+#banner ul li a{
+    background: #1af;
+    text-decoration: none;
+    display: inline-block;
+    width: 20px;
+    vertical-align: bottom;
+    text-align: center;
+}
+#banner ul li a:focus,#banner ul li a:hover{
+    padding-top: 10px;
+    background: yellow;
+}
+#nav{
+    clear: both;
+    height: 45px;
+    border-bottom: 1px solid #ccc
+}
+ #nav nav{
+    width: 960px;
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+   
+}
+#nav nav ul{
+    position: absolute;
+    margin: 0;
+   bottom: 0;
+   left: 0;
+   padding: 0;
+   
+   
+   
+    
+}
+#nav nav ul li{
+    float: left;
+   
+    list-style-type: none
+}
+#nav nav ul li a{
+    display: inline-block;
+    width: 80px;
+    background: #ccc;
+    border:1px solid darkgray;
+    height: 30px;
+    text-decoration: none;
+    color: black;
+    font-size: 0.8em;
+    line-height: 30px;
+    text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom: 0;
+    /* ？？？？？？？这里要通过设置外边距负值处理重叠的border  */
+    margin-bottom: -1px;
+    margin-right: -1px;
+
+
+}
+#nav nav ul li a:focus,#nav nav ul li a:hover{
+    background: white;
+    
+}
+
+#content{
+    clear: both;
+}
+/* #content .container{
+    width: 960px;
+    margin: 0 auto;
+   
+} */
+.row article{
+    padding: 80px;
+    border: 1px solid #ccc;
+    flex: 1 150px;
+    margin-right: 5px
+}
+.row article h3{
+    font-size: 1em;
+    text-align: center
+}
+.row {
+    width: 960px;
+    margin: 0 auto;
+    display: flex;
+    /* flex-wrap: wrap */
+    margin-top: 5px;
+    /* background: gray */
+}
+footer{
+    height: 80px;
+    background: #666
+}
+footer div{
+    margin: 0 auto;
+    width: 960px;
+}
+footer div p{
+    text-align: center;
+    /* margin: 0 */
+    padding-top: 10px;
+    color: #eee
+}

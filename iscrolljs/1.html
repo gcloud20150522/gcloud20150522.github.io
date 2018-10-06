@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .parent{
+            width: 340px;
+            height: 300px;
+            overflow: hidden;
+            border: solid 1px black;
+            margin: 0 auto;
+            position: relative;
+            margin-top: 30px;
+        }
+        .son{
+            width: 340px;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            background: white;
+        }
+        .refresh{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            line-height: 30px;
+            text-align: center;
+        }
+        .loadmore{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            line-height: 30px;
+            text-align: center;
+        }
+    </style>
+    <script src="iscroll-probe.js"></script>
+    <script>
+        window.onload=function () {
+            let oRefresh=document.querySelector('.refresh');
+            let oLoadmore=document.querySelector('.loadmore');
+            let oParent=document.querySelector('.parent');
+            let oSon=document.querySelector('.son');
+            //
+
+            let iC=new IScroll('.parent',{
+                //
+                // bounce:false,
+                disableMouse:false,
+                disablePointer:true,
+                disableTouch:false,
+                probeType:3
+            });
+
+            console.log(iC);
+            iC.on('scroll',function () {
+                console.log(iC.y);
+                // console.log(oParent.scrollTop+'hello');
+
+                if(iC.y>=50){
+                    oRefresh.innerHTML='松手';
+                }else {
+                    oRefresh.innerHTML='下拉刷新';
+                }
+                if(-iC.y-(oSon.offsetHeight-oParent.offsetHeight)>=50){//iC.y是以父元素（oParent）的中心（center center）为参考点，子元素（oSon）沿y轴方向移动的距离
+                    oLoadmore.innerHTML='松手加载';
+                }else {
+                    oLoadmore.innerHTML='加载更多';
+                }
+
+            });
+
+
+        }
+    </script>
+</head>
+<body>
+
+<div class="parent">
+    <div class="son">
+        <p>海外网10月5日电 当地时间10月5日，2018年诺贝尔和平奖在挪威揭晓。挪威诺贝尔委员会宣布，将2018年诺贝尔和平奖授予刚果（金）医生穆克维格（Denis Mukwege）和伊拉克雅兹迪族少女穆拉德（Nadia Murad），以表彰他们为终止将性暴力用作战争和武装冲突的武器方面作出的努力。</p>
+        <p>刚果（金）医生丹尼斯·穆克维格被认为是该国性暴力受害妇女的拯救者，他为当地东部地区受性暴力摧残的女性提供救助。环球网早前称，穆克维格在当地成立一家医院以及一个基金会，为受害女性进行医治。有消息称，穆克维格完成在法国的学业后本有机会留在法国，尽管刚果（金）充斥暴力，他仍选择回到祖国。他也在2014年获得了欧洲议会最高人权奖萨哈罗夫奖。</p>
+        <p>穆拉德是一名伊拉克雅兹迪族（Yazidi）的少女，她曾被极端组织“伊斯兰国”（IS）武装分子掳作性奴，遭到大批武装分子轮奸，直至昏厥。2015年12月，她勇敢地现身联合国安理会作证，含泪恳请国际社会将极端组织彻底铲除。</p>
+        <p>穆拉德曾介绍，自己被送到IS重镇摩苏尔的一幢建筑物内，里面有数千名雅兹迪妇女儿童，被武装分子视作礼物交换，而她更是在被一名武装分子带走当晚就被强暴。</p>
+        <p>今年的诺贝尔和平奖共有331个个人或组织获得提名，其中包括216人和115个组织。2017年诺贝尔和平奖则是颁给了反核武组织“国际废除核武器运动”（ICAN）。</p>
+        <p>诺贝尔和平奖创立于1901年，至今已有100多年的历史，是由瑞典发明家阿尔弗雷德·诺贝尔所创立的五个诺贝尔奖中的一个。</p>
+    </div>
+    <div class="refresh">下拉刷新</div>
+    <div class="loadmore">加载更多</div>
+
+</div>
+</body>
+</html>

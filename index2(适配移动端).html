@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    html,body{
+      height: 100%;
+      overflow: hidden;
+    }
+    canvas{
+      background: #c7edcc;
+    }
+    
+  </style>
+</head>
+<body>
+  <canvas></canvas>
+  <script>
+    
+    setInterval(function(){
+      
+      var canvas=document.querySelector("canvas");
+      canvas.width=document.documentElement.clientWidth;
+      canvas.height=document.documentElement.clientHeight;
+      var ctx=canvas.getContext("2d");
+      ctx.clearRect(0,0,canvas.width,canvas.height)
+      ctx.save()
+      /* 
+    1.初始化
+      将圆心调整到画布的中间
+      由于canvas中画圆与旋转所参照的坐标系于正常坐标系有出入
+        将整个画布逆时针旋转90度
+      初始化一些样式数据
+        ctx.lineWidth = 8;
+        ctx.strokeStyle = "black";
+        ctx.lineCap = "round";
+    */
+    ctx.translate(canvas.width/2,canvas.height/2)
+    // ctx.rotate(-90*Math.PI/180);
+    ctx.lineWidth = 8;
+    ctx.strokeStyle = "black";
+    ctx.lineCap = "round";
+    /* 
+      2.外层空心圆盘
+      圆盘颜色:#325FA2
+      圆盘宽度:14
+      圆盘半径:140
+    
+    */
+    ctx.save()
+    ctx.strokeStyle="#325FA2"
+    ctx.lineWidth=14
+    ctx.beginPath()
+    ctx.arc(0,0,140,0,360*Math.PI/180)
+    ctx.stroke()
+    ctx.restore()
+    
+    /* 
+      3.时针刻度
+      长度为20
+      宽度为8
+      外层空心圆盘与时针刻度之间的距离也为20
+    
+    */
+    ctx.save()
+    for(var i=0;i<12;i++){
+      ctx.lineWidth=8
+      ctx.beginPath()
+      ctx.moveTo(100,0)
+      ctx.lineTo(120,0)
+      ctx.stroke()
+      ctx.rotate(30*Math.PI/180)
+    }
+
+    ctx.restore()
+
+    ctx.save()
+    ctx.beginPath()
+    var num=["6","5","4","3","2","1","12","11","10","9","8","7"]
+    for(var i=0;i<360;i++){
+      if(i%30==0){
+        var textX =140*.6*Math.sin(i*Math.PI/180); //文字x坐标
+        var textY =140*.6*Math.cos(i*Math.PI/180); //文字y坐标
+        ctx.font = "20px Arial"; 
+            ctx.textBaseline = "middle";// 文字垂直对齐方式
+            ctx.textAlign = "center";   // 文字水平对齐方式
+            ctx.fillText(`${num[i/30]}`,textX,textY);
+      }
+    }
+    ctx.restore()
+    
+    /* 
+      4.分针刻度
+      宽度为4
+      长度为3
+    */
+    ctx.save()
+    for(var i=0;i<60;i++){
+      ctx.lineWidth=4;
+      ctx.beginPath()
+      ctx.moveTo(120,0)
+      ctx.lineTo(117,0)
+      if(i%5!==0){
+        ctx.stroke();
+      }
+      ctx.rotate(6*Math.PI/180)
+
+    }
+    ctx.restore()
+    
+    
+    /* setInterval(function(){
+      ctx.clearRect(0,0,500,500)
+       var date,sec,min,hou;
+       date=new Date(); 
+       sec=date.getSeconds();
+       min=date.getMinutes()+sec/60;
+       hou=date.getHours()+min/60;
+       hou=hou>12?hou-12:hou;
+       console.log(date,sec,min,hou);
+       ctx.save()
+      ctx.lineWidth=6;
+      ctx.rotate(sec*6*Math.PI/180)
+      // ctx.lineCap=
+      ctx.beginPath()
+      ctx.moveTo(-30,0)
+      ctx.lineTo(83,0)
+      ctx.stroke()
+      ctx.restore()
+
+    },1000)
+ */
+      
+       var date,sec,min,hou;
+       date=new Date(); 
+       sec=date.getSeconds();
+       min=date.getMinutes()+sec/60;
+       hou=date.getHours()+min/60;
+       hou=hou>12?hou-12:hou;
+
+
+      ctx.save()
+      ctx.lineWidth=14;
+      ctx.strokeStyle="yellow";
+      //应该用下面的ctx.moveTo(-20,0)
+      // ctx.translate(-20,0)
+      ctx.rotate(hou*30*Math.PI/180)
+
+      ctx.beginPath()
+      ctx.moveTo(-20,0)
+      ctx.lineTo(80,0)
+      ctx.stroke()
+      ctx.restore()
+
+      ctx.save()
+      ctx.lineWidth=10;
+      ctx.strokeStyle="skyblue";
+      ctx.rotate(min*6*Math.PI/180)
+      ctx.beginPath()
+      ctx.moveTo(-28,0)
+      ctx.lineTo(112,0)
+      ctx.stroke()
+      ctx.restore()
+
+      ctx.save()
+      ctx.lineWidth=6;
+      ctx.strokeStyle="deeppink";
+      ctx.rotate(sec*6*Math.PI/180)
+      // ctx.lineCap=
+      ctx.beginPath()
+      ctx.moveTo(-30,0)
+      ctx.lineTo(83,0)
+      ctx.stroke()
+      ctx.beginPath()
+      ctx.arc(96,0,10,0,360*Math.PI/180);
+      
+      ctx.stroke()
+      ctx.restore()
+
+      ctx.save()
+      ctx.fillStyle="deeppink";
+      ctx.beginPath()
+      ctx.arc(0,0,10,0,360*Math.PI/180);
+      ctx.fill()
+      ctx.restore()
+      ctx.restore()
+    },1000)
+      
+      
+    
+    
+
+    
+
+  </script>
+</body>
+</html>
